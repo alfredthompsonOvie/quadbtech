@@ -6,21 +6,25 @@ import { useState } from "react";
 import Main from "../components/ui/Main";
 import Span from "../components/ui/Span";
 import Form from "../components/ui/Form";
+import { useNavigate } from "react-router-dom";
 
 function Details() {
 	const [showForm, setShowForm] = useState(false);
 	const { show, isLoading } = useShow();
-
+	const navigate = useNavigate()
 	const showDetails = show?.show;
 
 	function handleToggle() {
 		setShowForm((showForm) => !showForm);
 	}
+	function goBack() {
+		navigate(-1)
+	}
 
 	if (isLoading) return <p>Loading...</p>;
 	return (
 		<Main $details>
-			<Button $back>
+			<Button $back onClick={goBack}>
 				<TiArrowBack />
 				<span>Back</span>
 			</Button>
